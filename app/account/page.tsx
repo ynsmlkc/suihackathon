@@ -13,7 +13,6 @@ import {
 const Account = () => {
   const { mutate: execCreateGame } = useSignAndExecuteTransaction();
   const account = useCurrentAccount();
-
   const [guess, setGuess] = useState("");
   const [stake, setStake] = useState(0);
 
@@ -26,6 +25,7 @@ const Account = () => {
   });
 
   const [amount, setAmount] = useState("");
+  const [uploadedImageUrl, setUploadedImageUrl] = useState(""); // uploadedImageUrl, string veya null olabilir
 
   // Butonlara tıklanıldığında input değerini değiştiren fonksiyon
   const handleButtonClick = (value) => {
@@ -173,11 +173,22 @@ const Account = () => {
             style={{
               position: "absolute",
               width: "152px",
+              height: "152px",
               left: "770px",
-              top: "585px",
+              top: "255px",
+              borderRadius: "50%",
+              overflow: "hidden",
             }}
           >
-            <img src={uploadedImageUrl} alt="Uploaded" />
+            <img
+              src={uploadedImageUrl}
+              alt="Uploaded"
+              style={{
+                width: "100%", // Resmi div'in genişliğine uydurur
+                height: "100%", // Resmi div'in yüksekliğine uydurur
+                objectFit: "cover", // Resmin oranını bozmadan div'e uyum sağlar
+              }}
+            />
           </div>
         )}
       </div>
