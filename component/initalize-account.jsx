@@ -37,6 +37,15 @@ const InitAccount = () => {
 
   const handleClick = () => {
     if (userName && name && instagramName && xName && bio) {
+      const userData = {
+        userName,
+        name,
+        instagramName,
+        xName,
+        bio,
+      };
+      localStorage.setItem("userData", JSON.stringify(userData));
+
       router.push("/account");
     }
   };

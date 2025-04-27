@@ -3,7 +3,6 @@ import SuiProvider from "../providers/suiProvider";
 import "./globals.css";
 import Suimo from "../component/Header/suimo";
 import SSS from "../component/Header/sss";
-import { WalletProvider } from "@mysten/dapp-kit";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,11 +26,9 @@ export default function RootLayout({ children }) {
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <SuiProvider>
-          <WalletProvider>
-            <Suimo />
-            <SSS />
-            {children}
-          </WalletProvider>
+          <Suimo />
+          <SSS />
+          {children}
         </SuiProvider>
       </body>
     </html>

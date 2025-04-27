@@ -5,7 +5,13 @@ export default function UploadPage() {
   const [uploadedImageUrl, setUploadedImageUrl] = useState(null);
   const [isCloudinaryReady, setIsCloudinaryReady] = useState(false);
 
+  // Sayfa yüklendiğinde localStorage'dan URL'yi al
   useEffect(() => {
+    const savedImageUrl = localStorage.getItem("uploadedImageUrl");
+    if (savedImageUrl) {
+      setUploadedImageUrl(savedImageUrl);
+    }
+
     const script = document.createElement("script");
     script.src = "https://widget.cloudinary.com/v2.0/global/all.js";
     script.async = true;
@@ -34,6 +40,8 @@ export default function UploadPage() {
           if (!error && result.event === "success") {
             console.log("Upload success:", result.info.secure_url);
             setUploadedImageUrl(result.info.secure_url);
+            // Yüklenen URL'yi localStorage'a kaydet
+            localStorage.setItem("uploadedImageUrl", result.info.secure_url);
           } else if (error) {
             console.error("Upload error:", error);
           }
@@ -61,7 +69,7 @@ export default function UploadPage() {
               className="w-full h-full object-cover rounded-full"
             />
           ) : (
-            <span className="text-white"></span>
+            <span className="text-white">Yükle</span>
           )}
         </button>
       </div>
