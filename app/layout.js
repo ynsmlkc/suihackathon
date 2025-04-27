@@ -1,5 +1,9 @@
 import { Geist, Geist_Mono } from "next/font/google";
+import SuiProvider from "../providers/suiProvider";
 import "./globals.css";
+import Suimo from "../component/Header/suimo";
+import SSS from "../component/Header/sss";
+import { WalletProvider } from "@mysten/dapp-kit";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -22,7 +26,13 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <SuiProvider>
+          <WalletProvider>
+            <Suimo />
+            <SSS />
+            {children}
+          </WalletProvider>
+        </SuiProvider>
       </body>
     </html>
   );
